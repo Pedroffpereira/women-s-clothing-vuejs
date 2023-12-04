@@ -1,30 +1,22 @@
 <script>
+import Footer from './components/footer.vue'
+import Navbar from './components/navbar.vue'
+import Header from './components/header.vue'
+export default {
+  components: {
+    Footer,
+    Navbar,
+    Header
+  }
+}
+
 </script>
 
 <template>
-  <nav>
-    <ul class="nav">
-      <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">List</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Contacts</a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="#">Car</a>
-      </li>
-    </ul>
-
-  </nav>
-  <header>
-    <img src="https://fakeimg.pl/1920x1080/" alt="">
-  </header>
-  <main class="container">
+  <Navbar />
+  <Header />
+  <main class="container my-5 py-5">
     <router-view />
   </main>
-  <footer></footer>
+  <Footer />
 </template>
