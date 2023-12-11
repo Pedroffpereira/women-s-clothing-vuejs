@@ -1,8 +1,8 @@
 <script>
-import item from '../components/item.vue'
+import itemList from '../components/home/itemList.vue'
 export default {
     components: {
-        item
+        itemList
     }
 }
 
@@ -10,11 +10,7 @@ export default {
 
 <template>
     <h2 class="text-center">Destaque</h2>
-    <div class="row my-5">
-        <div class="col-md-3">
-            <item />
-        </div>
-    </div>
+    <itemList />
     <div class="row">
         <div class="col-md-3">
             <div class="text-center">
