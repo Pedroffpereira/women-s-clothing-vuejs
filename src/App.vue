@@ -5,13 +5,13 @@
   <nav>
     <ul class="nav">
       <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#">Home</a>
+        <router-link class="nav-link" to="/">Home</router-link>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">List</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Contacts</a>
+        <router-link class="nav-link" to="/contact">Contact</router-link>
       </li>
       
       <li class="nav-item">
@@ -21,7 +21,7 @@
 
   </nav>
   <header>
-    <img src="https://fakeimg.pl/1920x1080/" alt="">
+    <!--<img src="https://fakeimg.pl/1920x1080/" alt="">-->
   </header>
   <main class="container">
     <router-view />
