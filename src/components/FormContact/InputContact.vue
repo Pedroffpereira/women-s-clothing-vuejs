@@ -11,7 +11,6 @@
         <input type="text"
             class="form-control"
             placeholder="Enter your subject"
-            required="required"
             @input="$emit('inputSubject',$event.target.value)">
     </div>
     <div>

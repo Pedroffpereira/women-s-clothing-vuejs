@@ -14,7 +14,9 @@
                     subject: '',
                     email: '',
                     message: '',
-                }
+                },
+
+                nameValid:true,
             }
         },
 
@@ -31,7 +33,42 @@
             setMessage(message){
                 this.formContact.message = message
             }, 
+
+            validateName(){
+                const nameRegex = /^[a-zA-Z-ÖØ-öø-ÿÇç ]{3,30}$/;
+                this.nameValid = nameRegex.test(this.formContact.name);
+                this.nameValid = nameRegex.test(this.formContact.subject);
+            },
+
+            submitForm(){
+                
+                this.validateName()
+
+                if (this.nameValid){
+                    console.log('Form is valid')
+                }
+                else{
+                    console.log('Form is not valid')
+                }
+
+
+                /*const nameIsValid = this.formContact.name.length > 0
+                const subjectIsValid = this.formContact.subject.length > 0
+                const emailIsValid = this.formContact.email.length > 0
+                const messageIsValid = this.formContact.message.length > 0
+                
+                const formIsValid = nameIsValid && subjectIsValid && emailIsValid && messageIsValid
+                
+                if (formIsValid){
+                    console.log('Form is valid')
+                }
+                else{
+                    console.log('Form is not valid')
+                }*/
+            }
         }
+
+
 }
 </script>
 
@@ -53,7 +90,7 @@
                             @input-email="setEmail"
                             @input-message="setMessage"/>
                     </div>
-                    <SubmitButton />
+                    <SubmitButton @click.prevent="submitForm"/>
                 </form>
             </div> 
         </div>
