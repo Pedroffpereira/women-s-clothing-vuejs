@@ -12,10 +12,27 @@
                 formContact:{
                     name: '',
                     subject: '',
+                    email: '',
+                    message: '',
                 }
             }
+        },
+
+        methods:{
+            setName(name){
+                this.formContact.name = name
+            },
+            setSubject(subject){
+                this.formContact.subject = subject
+            },
+            setEmail(email){
+                this.formContact.email = email
+            },
+            setMessage(message){
+                this.formContact.message = message
+            }, 
         }
-    }
+}
 </script>
 
 <template>
@@ -30,9 +47,11 @@
             <div class="col-md-6 bg-light p-4" >
                 <form>
                     <div class="mb-3">
-                        <InputContact :name="formContact.name" @input="formContact.name = $event"/>
-                        <p>{{ formContact.name }}</p>
-                        <p>{{ formContact.subject }}</p>
+                        <InputContact 
+                            @input-name="setName"
+                            @input-subject="setSubject"
+                            @input-email="setEmail"
+                            @input-message="setMessage"/>
                     </div>
                     <SubmitButton />
                 </form>
