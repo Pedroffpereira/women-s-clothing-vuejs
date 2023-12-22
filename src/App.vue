@@ -53,7 +53,7 @@ export default {
   <header>
     <!--<img src="https://fakeimg.pl/1920x1080/" alt="">-->
   </header>
-  <main class="container">
+  <main>
     <router-view />
   </main>
   <Footer />
