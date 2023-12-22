@@ -1,4 +1,4 @@
-import {defineStore} from 'pinia'
+import { defineStore } from 'pinia'
 
 export const useProductsList = defineStore("ProductList", {
     state: () => ({
@@ -9,17 +9,25 @@ export const useProductsList = defineStore("ProductList", {
         getDate: (state) => state.date,
         getProducts: (state) => state.products
     },
-    actions: { 
+    actions: {
 
         addDate(date) {
 
             this.date = date
         },
-        addProduct(product){
+        addProduct(product) {
             this.products.push(product)
         },
-        addProductList(productList){
+        addProductList(productList) {
             this.products = productList
+        },
+        searchProductList(searchString = '') {
+            if (searchString != '') {
+                return this.products.filter(
+                    (product) => product.name.includes(searchString)
+                )
+            }
+            return this.products;
         }
     }
 
