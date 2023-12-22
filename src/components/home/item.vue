@@ -2,31 +2,34 @@
 import itemRating from './item/itemRating.vue'
 import itemName from './item/itemName.vue'
 import itemPrice from './item/itemPrice.vue'
+import itemheader from './item/itemHeader.vue'
+import { useCartStore } from '../../store/cart.js'
+import { mapState, mapActions } from 'pinia'
 export default {
     components: {
         itemRating,
         itemPrice,
+        itemheader,
         itemName
     },
-    props:{
+    props: {
         product: Object
+    },
+    computed: {
+        ...mapState(useCartStore, ['cart'])
+    },
+    methods: {
+        ...mapActions(useCartStore, ['addToCart']),
+        onClick: function() {
+            this.addToCart(this.product)
+        }
     }
 }
 </script>
 
 <template>
-    <div class="item">
-        <div class="item-header">
-            <img :src="product.image" alt="">
-            <div class="cart-icon-hover">
-                <span class="cart-icon">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </span>
-                <span class="text">
-                    add to card
-                </span>
-            </div>
-        </div>
+    <div class="item" v-on:click="onClick">
+        <itemheader :image="product.image" />
         <itemName :name="product.name" />
         <itemPrice :price="product.price" />
         <itemRating :stars="product.rating" />
@@ -36,9 +39,7 @@ export default {
 .item {
     width: fit-content;
 }
-.item img{
-    width: 100%;
-}
+
 .item>* {
     display: block;
 }
