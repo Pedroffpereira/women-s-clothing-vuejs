@@ -1,14 +1,12 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
+import { post } from '../helpers/request_helpers'
 
 export const useCouponStore = defineStore('coupon', () => {  
   const code = ref("");
   const isCouponValid = computed(() => code.value.length > 0); 
-  const discount = ref(1);
-  const hasDiscount = computed(() => {
-    const value = discount.value;
-    return value > 0 && value < 1;
-  });
+  const discount = ref(0);
+  const hasDiscount = computed(() => discount.value > 0 && discount.value < 1);
 
   async function submitCoupon(input) {
     try {
@@ -16,14 +14,7 @@ export const useCouponStore = defineStore('coupon', () => {
 
       const couponCode = { couponCode: input }
 
-      const response = await fetch("http://127.0.0.1:3333/check-coupon", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(couponCode),
-      });
-
+      const response = await post("check-coupon", couponCode);
       const result = await response.json();
 
       if (result.success) {
@@ -34,7 +25,7 @@ export const useCouponStore = defineStore('coupon', () => {
       {
         //resets values in case a previous submitted coupon was valid 
         code.value = "";
-        discount.value = 1;
+        discount.value = 0;
       }
       
       return result;

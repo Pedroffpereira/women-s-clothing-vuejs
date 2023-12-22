@@ -1,4 +1,5 @@
-const backendUrl = "http://127.0.0.1:3333"
+// const backendUrl = "http://127.0.0.1:3333"
+const backendUrl = import.meta.env.VITE_BACKEND_URL
 
 function pathNormalizer(path) {
     if (typeof path !== 'string') {
