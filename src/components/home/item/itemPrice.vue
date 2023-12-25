@@ -1,7 +1,7 @@
 <script>
 export default {
     props: {
-        price: String,
+        price: Number,
     }
 }
 </script>

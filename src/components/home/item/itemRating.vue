@@ -1,7 +1,7 @@
 <script>
 export default {
     props: {
-        stars: Int16Array
+        stars: Number
     }
 }
 </script>

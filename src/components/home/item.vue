@@ -3,6 +3,7 @@ import itemRating from './item/itemRating.vue'
 import itemName from './item/itemName.vue'
 import itemPrice from './item/itemPrice.vue'
 import itemheader from './item/itemHeader.vue'
+import itembutton from './item/itembutton.vue'
 import { useCartStore } from '../../store/cart.js'
 import { mapState, mapActions } from 'pinia'
 export default {
@@ -10,7 +11,8 @@ export default {
         itemRating,
         itemPrice,
         itemheader,
-        itemName
+        itemName,
+        itembutton
     },
     props: {
         product: Object
@@ -20,20 +22,20 @@ export default {
     },
     methods: {
         ...mapActions(useCartStore, ['addToCart']),
-        onClick: function() {
-            this.addToCart(this.product)
-        }
+
     }
 }
 </script>
 
 <template>
-    <div class="item" v-on:click="onClick">
-        <itemheader :image="product.image" />
-        <itemName :name="product.name" />
-        <itemPrice :price="product.price" />
-        <itemRating :stars="product.rating" />
-    </div>
+    <router-link class="nav-link" :to="`/item/${product.id}`">
+        <div class="item mb-5" v-on:click="onClick">
+            <itemheader :image="product.image" />
+            <itemName :name="product.name.substring(0, 30)" />
+            <itemPrice :price="product.price" />
+            <itemRating :stars="product.rating" />
+        </div>
+    </router-link>
 </template>
 <style scoped >
 .item {
