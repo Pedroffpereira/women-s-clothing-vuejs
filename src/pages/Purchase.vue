@@ -19,8 +19,6 @@ const productsStore = useProductsList();
 const hasError = ref(false);
 const errorMessage = "An error ocurred while setting up your purchase information. But don't worry, your purchase was succesfull!";
 
-console.log(cartStore.purchase)
-
 function setReceiptData() {
     try {
         console.log(cartStore.purchase)
