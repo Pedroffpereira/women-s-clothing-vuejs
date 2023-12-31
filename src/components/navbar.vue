@@ -2,17 +2,17 @@
     <nav>
         <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <router-link class="nav-link" to="/">Home</router-link>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">List</a>
+                <router-link class="nav-link" to="/list">List</router-link>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Contacts</a>
+                <router-link class="nav-link" to="/contact">Contact</router-link>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">Car</a>
+                <a class="nav-link" href="#">Cart</a>
             </li>
         </ul>
 
