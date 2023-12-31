@@ -1,4 +1,4 @@
-!<template>
+<template>
     <div>
         <button type="submit" class="btn btn-primary">Send Message</button>
     </div>

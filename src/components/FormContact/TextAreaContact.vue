@@ -1,8 +1,7 @@
 <template>
   <div>
     <label class="form-label">{{ label }} </label>
-    <input
-      type="text"
+    <textarea
       class="form-control"
       :placeholder="placeholder"
       @input="inputHandler" 
