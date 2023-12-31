@@ -31,7 +31,7 @@ export default {
 
 </script>
 
-<template>
+<template> 
   <Navbar />
   <main>
     <router-view />

@@ -14,8 +14,8 @@ export default {
 
 <style scoped>
 .item img {
-    width: 100%;
     object-fit: contain;
     height: 100px;
+    width: 250px;
 }
 </style>
