@@ -4,7 +4,7 @@ import { useCouponStore } from './coupon'
 import { useProductsList } from './products'
 import { useRouter } from 'vue-router'
 import { setInLocalStorage, getFromLocalStorage, removeFromLocalStorage } from '../helpers/local_storage_helpers'
-import { post } from '../helpers/request_helpers'
+import { apiMakePurchase } from '../api/cart'
 
 export const useCartStore = defineStore('cart', () => {
   //#region Stores, Router, whatever else...
@@ -40,37 +40,7 @@ export const useCartStore = defineStore('cart', () => {
         return;
       }
       
-      //get product list from list store
       const productList = productsStore.getProducts;
-      console.log(productList)
-      
-      /*[{
-        id: 6,
-        name: "DANVOUY Womens T Shirt Casual Cotton Short",
-        image: "https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg",
-        price: 12.99,
-        quantity: 13,
-        rating: 3,
-        cartQuantity: 1
-        },
-        {
-        id: 1,
-        name: "BIYLACLESEN Women's 3-in-1 Snowboard Jacket Winter Coats",
-        image: "https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg",
-        price: 56.99,
-        quantity: 11,
-        rating: 1,
-        cartQuantity: 1
-        },
-        {
-        id: 4,
-        name: "MBJ Women's Solid Short Sleeve Boat Neck V ",
-        image: "https://fakestoreapi.com/img/71z3kpMAYsL._AC_UY879_.jpg",
-        price: 9.85,
-        quantity: 12,
-        rating: 2,
-        cartQuantity: 1
-      }];*/
 
       if (productList.length === 0) {
         empty = true;
@@ -136,9 +106,10 @@ export const useCartStore = defineStore('cart', () => {
     }
   }
 
-  function addToCart(item) {
+  function addToCart(item, quantity = 1) {
     if (!itemAlreadyInCart(item)) {
-      item.cartQuantity = 1;
+      if (quantity < 1) quantity = 1;
+      item.cartQuantity = quantity;
       items.value.push(item);
       setInLocalStorage('cart', items.value);
     }
@@ -184,10 +155,10 @@ export const useCartStore = defineStore('cart', () => {
 
       const checkout = { products: productList, coupon: couponStore.code }
 
-      const response = await post("checkout", checkout);
-      const result = await response.json();
+      const result = await apiMakePurchase(checkout);
 
       if (result.success) {
+        result.checkout.products = JSON.parse(result.checkout.products);
         purchase.value = result;
         items.value = [];
         removeFromLocalStorage('cart');

@@ -1,10 +1,10 @@
 <script setup>
-import Title from './Title.vue'
-import CartList from './CartList.vue'
-import Coupon from './coupon/Form.vue'
-import Payment from './payment/Payment.vue'
-import NoCart from './empty/NoCart.vue'
-import { useCartStore } from '../../store/cart'
+import Title from '../components/cart/Title.vue'
+import CartList from '../components/cart/CartList.vue'
+import Coupon from '../components/cart/coupon/Form.vue'
+import Payment from '../components/cart/payment/Payment.vue'
+import NoCart from '../components/cart/empty/NoCart.vue'
+import { useCartStore } from '../store/cart'
 const cartStore = useCartStore();
 </script>
 

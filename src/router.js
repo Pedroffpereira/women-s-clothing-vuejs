@@ -3,6 +3,8 @@ import Home from "./pages/Home.vue"
 import Contact from "./pages/ContactPage.vue"
 import list from "./pages/List.vue"
 import itemDetail from "./pages/itemDetail.vue"
+import Cart from "./pages/Cart.vue"
+import Purchase from './pages/Purchase.vue'
 export default createRouter({
     history: createWebHistory(),
     routes: [
@@ -21,6 +23,14 @@ export default createRouter({
         {
             path: '/item/:id',
             component: itemDetail
-        }
+        },
+        {
+            path: '/cart',
+            component: Cart
+        },
+        {
+            path: '/purchase',
+            component: Purchase
+        },
     ]
 })
