@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import { post } from '../helpers/request_helpers'
+import { apiSubmitCoupon } from '../api/coupon'
 
 export const useCouponStore = defineStore('coupon', () => {  
   const code = ref("");
@@ -14,8 +14,7 @@ export const useCouponStore = defineStore('coupon', () => {
 
       const couponCode = { couponCode: input }
 
-      const response = await post("check-coupon", couponCode);
-      const result = await response.json();
+      const result = await apiSubmitCoupon(couponCode);
 
       if (result.success) {
         code.value = input;

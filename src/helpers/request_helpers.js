@@ -1,4 +1,4 @@
-// const backendUrl = "http://127.0.0.1:3333"
+import axios from 'axios'
 const backendUrl = import.meta.env.VITE_BACKEND_URL
 
 function pathNormalizer(path) {
@@ -11,20 +11,25 @@ function pathNormalizer(path) {
     return path;
 }
 
+async function get(path) {
+    try {
+        const uri = backendUrl + pathNormalizer(path);
+        const response = await axios.get(uri);
+        return response.data; 
+    } catch (error) {
+        return error.response.data;
+    }
+}
+
 async function post(path, object) {
     try {
         const uri = backendUrl + pathNormalizer(path);
-        return await fetch(uri, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(object),
-        });
+        const response = await axios.post(uri, object);
+        return response.data;
     } catch (error) {
-        console.error("Error:", error);
+        return error.response.data;
     }
 }
 
 
-export { post };
+export { get, post };
