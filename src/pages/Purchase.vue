@@ -13,7 +13,7 @@ const cartStore = useCartStore();
 function noPurchaseRedirect() {
     if (!cartStore.hasPurchased) router.push('/');
 }
-//noPurchaseRedirect();
+noPurchaseRedirect();
 
 const productsStore = useProductsList();
 const hasError = ref(false);
@@ -38,7 +38,7 @@ function setReceiptData() {
 }
 if (cartStore.purchase.success) setReceiptData();
 
-// onUnmounted(() => cartStore.purchase = {});
+onUnmounted(() => cartStore.purchase = {});
 </script>
 
 <template>
