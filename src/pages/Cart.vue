@@ -9,17 +9,19 @@ const cartStore = useCartStore();
 </script>
 
 <template>
-    <div class="row row-gap-5 justify-content-between" v-if="cartStore.items.length > 0">
-        <Title></Title>
-        <div class="col-lg-7 col-xl-8">
-            <CartList></CartList>
+    <div class="container py-5 my-5">
+        <div class="row row-gap-5 justify-content-between" v-if="cartStore.items.length > 0">
+            <Title></Title>
+            <div class="col-lg-7 col-xl-8">
+                <CartList></CartList>
+            </div>
+            <div class="col-lg-auto d-flex flex-column row-gap-5">
+                <Coupon></Coupon>
+                <Payment></Payment>
+            </div>
         </div>
-        <div class="col-lg-auto d-flex flex-column row-gap-5">
-            <Coupon></Coupon>
-            <Payment></Payment>
+        <div v-else>
+            <NoCart></NoCart>
         </div>
-    </div>
-    <div v-else>
-        <NoCart></NoCart>
     </div>
 </template>
