@@ -5,7 +5,7 @@ import { mapState, mapActions } from 'pinia'
 export default {
 
     computed: {
-        ...mapState(useCartStore, ['total']),
+        ...mapState(useCartStore, ['items']),
     }
 }
 </script>
@@ -23,7 +23,7 @@ export default {
             </li>
 
             <li class="nav-item">
-                <router-link class="nav-link" to="/cart">Cart({{ total }}€)</router-link>
+                <router-link class="nav-link" to="/cart">Cart({{ items.length }})</router-link>
             </li>
         </ul>
 
