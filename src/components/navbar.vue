@@ -1,3 +1,14 @@
+<script>
+
+import { useCartStore } from '../store/cart.js'
+import { mapState, mapActions } from 'pinia'
+export default {
+
+    computed: {
+        ...mapState(useCartStore, ['total']),
+    }
+}
+</script>
 <template>
     <nav>
         <ul class="nav">
@@ -12,9 +23,27 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">Cart</a>
+                <router-link class="nav-link" to="/cart">Cart({{ total }}€)</router-link>
             </li>
         </ul>
 
     </nav>
 </template>
+<style scoped>
+a {
+    color: black;
+    text-underline-offset: 5px;
+}
+
+a:hover {
+    color: black;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+}
+
+.router-link-active {
+    text-decoration: underline;
+    color: black;
+    text-underline-offset: 5px;
+}
+</style>

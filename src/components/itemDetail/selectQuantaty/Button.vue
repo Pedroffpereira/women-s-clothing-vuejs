@@ -3,3 +3,9 @@
         <slot></slot>
     </button>
 </template>
+<style scoped>
+button {
+    background: none;
+    border: none;
+}
+</style>

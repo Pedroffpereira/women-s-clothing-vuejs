@@ -58,3 +58,8 @@ export default {
             ">+</Button>
     </div>
 </template>
+<style scoped>
+div {
+    border: 1px solid black;
+}
+</style>
