@@ -37,7 +37,4 @@ input {
     border-bottom: 1px solid;
 }
 
-input:focus-visible {
-    width: 100%;
-}
 </style>

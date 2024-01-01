@@ -10,10 +10,19 @@
                     <div class="col-md-2">
                         <h5>Informações Úteis</h5>
                         <ul>
-                            <li>Home</li>
-                            <li>Carrinho</li>
-                            <li>Lista de produtos</li>
-                            <li>Contacto</li>
+                            <li class="nav-item">
+                                <router-link class="nav-link" to="/">Home</router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link class="nav-link" to="/list">List</router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link class="nav-link" to="/contact">Contact</router-link>
+                            </li>
+
+                            <li class="nav-item">
+                                <router-link class="nav-link" to="/cart">Cart</router-link>
+                            </li>
                         </ul>
                     </div>
                     <div class="col-md-6"></div>
@@ -38,3 +47,9 @@
         </div>
     </footer>
 </template>
+<style>
+    ul{
+        list-style-type: none;
+
+    }
+</style>
