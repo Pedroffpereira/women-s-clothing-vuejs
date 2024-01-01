@@ -13,71 +13,13 @@ export const useCartStore = defineStore('cart', () => {
   const router = useRouter();
   //#endregion
 
-  //#region Cart
-  const items = ref(setCart());
-
-  function setCart() {
-    const localStorageCart = getFromLocalStorage('cart');
-    
-    const validatedCart = validateCart(localStorageCart);
-    
-    if (validatedCart.length > 0) setInLocalStorage('cart', validatedCart);
-    else removeFromLocalStorage('cart');
-
-    return validatedCart;
-  }
-
-  function validateCart(cart) {
-    let empty = false;
-    try {
-      if (!cart || !Array.isArray(cart)) {
-        empty = true;
-        return;
-      }
-      
-      if (cart.length === 0) {
-        empty = true;
-        return;
-      }
-      
-      const productList = productsStore.getProducts;
-
-      if (productList.length === 0) {
-        empty = true;
-        return;
-      }
-
-      for (let index = 0; index < cart.length; index++) {
-        const item = cart[index];
-        const product = productList.find(p => p.id === item.id);
-        
-        if (!product) {
-          cart.splice(index, 1);
-          continue;
-        }
-        
-        if (product.quantity === 0) {
-          cart.splice(index, 1);
-          continue;
-        }
-
-        if (product.quantity !== item.quantity) {
-          item.quantity = product.quantity;
-          if (item.cartQuantity > item.quantity) {
-            item.cartQuantity = item.quantity;
-          }
-        }
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      empty = true;
-    } finally {
-      return empty ? [] : cart;
-    }
-  }  
-  //#endregion
+  const items = ref([]);
   
   //#region Cart operations
+  function addCart(cart) {
+    if(Array.isArray(cart)) items.value = cart; 
+  }
+
   function incrementQuantity(id) {
     try {
       const item = items.value.find(item => item.id === id);
@@ -194,6 +136,7 @@ export const useCartStore = defineStore('cart', () => {
 
   return {
     items,
+    addCart,
     incrementQuantity,
     decrementQuantity,
     totalPrice,
