@@ -1,11 +1,40 @@
 import { ProductDTO } from '../dto/Product.js'
-import axios from 'axios'
-export async function getProducts() {
-    const products = await axios.get(import.meta.env.VITE_BACKEND_URL + 'products')
+import { get } from '../helpers/request_helpers.js'
+import { setInLocalStorage, getFromLocalStorage } from '../helpers/local_storage_helpers.js'
+async function getProducts() {
+    const products = await get('products')
     const productsDTO = [];
-    for (const product of products.data) {
+    console.log(products)
+    for (const product of products) {
         const productDTO = new ProductDTO(product)
         productsDTO.push(productDTO)
     }
     return productsDTO;
+}
+function validateDate(date) {
+
+    if (date == null) {
+        return false
+    }
+    if (date < Date.now()) {
+        return false
+    }
+    return true
+}
+export async function saveProductsCache() {
+    const date = getFromLocalStorage("Date");
+    if (validateDate(date)) {
+        return {
+            "Date": date,
+            "Products": getFromLocalStorage("Products")
+        }
+    }
+    const dateNow = Date.now() + (30 * 60 * 1000)
+    const products = await getProducts();
+    setInLocalStorage("Date", dateNow);
+    setInLocalStorage("Products", products); alert(2)
+    return {
+        "Date": dateNow,
+        "Products": products
+    }
 }
