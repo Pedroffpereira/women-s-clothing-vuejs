@@ -109,6 +109,7 @@ export const useCartStore = defineStore('cart', () => {
   function addToCart(item, quantity = 1) {
     if (!itemAlreadyInCart(item)) {
       if (quantity < 1) quantity = 1;
+      if (quantity > item.quantity) quantity = item.quantity;
       item.cartQuantity = quantity;
       items.value.push(item);
       setInLocalStorage('cart', items.value);
