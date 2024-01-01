@@ -4,14 +4,21 @@ import Button from './Button.vue';
 export default {
     methods: {
         inputQuantaty: function (quantity) {
-            if (quantity < 0) {
-                quantity = 0;
+            if (isNaN(quantity)) {
+                this.quantity = 1;
+                return;
+            }
+            if (quantity < 1) {
+                this.quantity = 1;
+                return;
             }
 
             if (quantity > this.maxQuantity) {
-                quantity = this.maxQuantity;
+                this.quantity = this.maxQuantity;
+                return;
             }
-            this.quantity = quantity
+            this.quantity = quantity;
+            return;
         }
     },
     props: {
@@ -37,8 +44,8 @@ export default {
     <div>
         <Button :quantity="quantity" @clickSetQuantity="() => {
             const quantity = this.quantity - 1
-            if (quantity < 0) {
-                this.quantity = 0;
+            if (quantity < 1) {
+                this.quantity = 1;
                 return
             }
 
@@ -49,7 +56,7 @@ export default {
         <Input :quantity="quantity" @inputQuantaty="inputQuantaty" />
         <Button :quantity="quantity" @clickSetQuantity="() => {
             const quantity = this.quantity + 1;
-            if (quantity > this.maxQuantity) {
+            if (quantity >= this.maxQuantity) {
                 this.quantity = this.maxQuantity;
                 return
             }

@@ -12,8 +12,8 @@ export default {
         quantity: function (val) {
             this.selectQuantity = val
         },
-        selectQuantaty: function (val) {
-            this.$emit('inputQuantaty', val);
+        selectQuantity: function () {
+            this.$emit('inputQuantaty', this.selectQuantity);
         }
     },
 }

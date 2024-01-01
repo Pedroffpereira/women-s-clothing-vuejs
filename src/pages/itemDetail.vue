@@ -18,7 +18,7 @@ export default {
     },
     data() {
         return {
-            quantity: 0,
+            quantity: 1,
             add: false
         }
     },
@@ -58,15 +58,14 @@ export default {
                     Esgotado
                 </p>
 
-                <p v-if="product.quantity < 3">
+                <p v-if="product.quantity < 3 && product.quantity > 0">
                     Poucas Unidades
-
                 </p>
 
                 <span v-if="product.quantity >= 3">
                     Em stock
                 </span>
-                <div class="d-flex">
+                <div class="d-flex" v-if="product.quantity > 0">
                     <selectQuantaty :maxQuantity="product.quantity" @setQuantaty="setQuantaty" />
                     <itemButton @addToCart="addToCart" :product="product" :quantity="quantity"
                         @customClick="() => { add = true }" />

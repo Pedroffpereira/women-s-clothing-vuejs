@@ -4,7 +4,6 @@ import { setInLocalStorage, getFromLocalStorage } from '../helpers/local_storage
 async function getProducts() {
     const products = await get('products')
     const productsDTO = [];
-    console.log(products)
     for (const product of products) {
         const productDTO = new ProductDTO(product)
         productsDTO.push(productDTO)
@@ -32,7 +31,7 @@ export async function saveProductsCache() {
     const dateNow = Date.now() + (30 * 60 * 1000)
     const products = await getProducts();
     setInLocalStorage("Date", dateNow);
-    setInLocalStorage("Products", products); alert(2)
+    setInLocalStorage("Products", products);
     return {
         "Date": dateNow,
         "Products": products

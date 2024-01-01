@@ -12,7 +12,6 @@ export default {
   async mounted() {
 
     const cache = await saveProductsCache()
-    console.log(cache)
     this.addDate(cache.Date);
     this.addProductList(cache.Products)
   },
