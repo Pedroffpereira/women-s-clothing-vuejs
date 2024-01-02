@@ -107,6 +107,12 @@ export default {
 
       if (this.nameValid && this.emailValid && this.messageValid && this.subjectValid){
                     alert('Message sent')
+                    formContact = {
+                        name: "",
+                        subject: "",
+                        email: "",
+                        message: "",
+                    }
                 }
                 else{
                     alert('Form is not valid')
@@ -117,7 +123,7 @@ export default {
 </script>
 
 <template>
-  <div class="container">
+  <div class="container py-5 my-5">
     <div class="row">
       <div class="col-md-6">
         <p><strong>Don't be a stranger</strong></p>
@@ -135,25 +141,25 @@ export default {
               :textError="errorText.name"
               label="Name:"
               placeholder="Enter your name"
-              @inputA="setName"
+              @inputText="setName"
             />
             <InputContact
               :textError="errorText.subject"
               label="Subject:"
               placeholder="Enter your subject"
-              @inputA="setSubject"
+              @inputText="setSubject"
             />
             <InputContact
               :textError="errorText.email"
               label="Email:"
               placeholder="Enter your email"
-              @inputA="setEmail"
+              @inputText="setEmail"
             />
             <TextAreaContact
               :textError="errorText.message"
               label="Message:"
               placeholder="Enter your message"
-              @inputA="setMessage"
+              @inputText="setMessage"
             />
           </div>
           <SubmitButton @click.prevent="submitForm" />
