@@ -23,10 +23,10 @@ function validateDate(date) {
 export async function saveProductsCache() {
 
     const date = getFromLocalStorage("Date");
-    if (validateDate(date)) { 
+    if (validateDate(date)) {
         return getProductsfromCache()
     }
-    return  saveProductsOnCache()
+    return saveProductsOnCache()
 }
 
 
@@ -39,12 +39,16 @@ export async function getProductsfromCache(date) {
 }
 
 export async function saveProductsOnCache() {
-    const dateNow = Date.now() + (30 * 60 * 1000)
-    const products = await getProducts();
-    setInLocalStorage("Date", dateNow);
-    setInLocalStorage("Products", products);
-    return {
-        "Date": dateNow,
-        "Products": products
+    try {
+        const dateNow = Date.now() + (30 * 60 * 1000)
+        const products = await getProducts();
+        setInLocalStorage("Date", dateNow);
+        setInLocalStorage("Products", products);
+        return {
+            "Date": dateNow,
+            "Products": products
+        }
+    } catch (e) {
+        alert(e)
     }
 }
