@@ -10,9 +10,9 @@ export default {
 
     computed: {
         isInCart: function () {
-            return this.items.find(
+            return this.items.some(
                 (item) => item.id == this.$route.params.id
-            ) != null
+            )
         },
         product: function () {
             return this.products.find(
