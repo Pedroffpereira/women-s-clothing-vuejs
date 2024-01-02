@@ -34,7 +34,7 @@ export default {
 
   methods:{
     inputHandler(){
-      this.$emit('inputA', this.inputValue)
+      this.$emit('inputText', this.inputValue)
     }
   }
 };
