@@ -2,8 +2,9 @@ import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
 import { useCouponStore } from './coupon'
 import { useProductsList } from './products'
+import { saveProductsOnCache } from '../api/products'
 import { useRouter } from 'vue-router'
-import { setInLocalStorage, getFromLocalStorage, removeFromLocalStorage } from '../helpers/local_storage_helpers'
+import { setInLocalStorage, removeFromLocalStorage } from '../helpers/local_storage_helpers'
 import { apiMakePurchase } from '../api/cart'
 
 export const useCartStore = defineStore('cart', () => {
@@ -106,6 +107,9 @@ export const useCartStore = defineStore('cart', () => {
         purchase.value = result;
         items.value = [];
         removeFromLocalStorage('cart');
+        const updatedProductsData = await saveProductsOnCache();
+        productsStore.addDate(updatedProductsData.Date);
+        productsStore.addProductList(updatedProductsData.Products);
       }
       else purchase.value = {
         success: false, 
