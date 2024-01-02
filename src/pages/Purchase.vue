@@ -21,14 +21,12 @@ const errorMessage = "An error ocurred while setting up your purchase informatio
 
 function setReceiptData() {
     try {
-        console.log(cartStore.purchase)
         cartStore.purchase.checkout.products.forEach(purchasedItem => {
-            const product = productsStore.products.find(product => product.id === purchasedItem.id);
+            const product = productsStore.getProducts.find(product => product.id === purchasedItem.id);
             purchasedItem.name = product.name;
             purchasedItem.image = product.image;
             purchasedItem.price = product.price;
         });
-        console.log(cartStore.purchase);
     } catch (error) {
         console.error("Error:", error);
         hasError.value = true;
