@@ -114,9 +114,7 @@ export default {
                         message: "",
                     }
                 }
-                else{
-                    alert('Form is not valid')
-                }
+                
     },
   },
 };
