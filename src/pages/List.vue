@@ -21,7 +21,7 @@ export default {
 
 <template>
     <div class="container py-5 my-5">
-        <h1 class="mb-5">Lista de Predutos</h1>
+        <h1 class="mb-5">Product List</h1>
         <div  class="mb-5">
             <search :searchName="searchName" @inputSearch="inputSearch" />
         </div>
