@@ -8,6 +8,11 @@ export const useCouponStore = defineStore('coupon', () => {
   const discount = ref(0);
   const hasDiscount = computed(() => discount.value > 0 && discount.value < 1);
 
+  function $reset() {
+    code.value = "";
+    discount.value = 0;
+  }
+
   async function submitCoupon(input) {
     try {
       if (input.length === 0) return;
@@ -20,12 +25,7 @@ export const useCouponStore = defineStore('coupon', () => {
         code.value = input;
         discount.value = result.discount / 100;
       }
-      else
-      {
-        //resets values in case a previous submitted coupon was valid 
-        code.value = "";
-        discount.value = 0;
-      }
+      else $reset();
       
       return result;
     } catch (error) {
@@ -38,6 +38,7 @@ export const useCouponStore = defineStore('coupon', () => {
     isCouponValid,
     discount, 
     hasDiscount, 
+    $reset,
     submitCoupon,
   }
 })
