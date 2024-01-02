@@ -82,7 +82,7 @@ export default {
             </div>
         </div>
         <div class="mt-5">
-            <h2>Detalhes Do produto</h2>
+            <h2>Product Details</h2>
             <p>
                 {{ product.description }}
             </p>

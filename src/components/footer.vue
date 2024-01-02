@@ -8,7 +8,7 @@
                         <h5>The best look anytime, anywhere.</h5>
                     </div>
                     <div class="col-md-2">
-                        <h5>Informações Úteis</h5>
+                        <h5>Useful information</h5>
                         <ul>
                             <li class="nav-item">
                                 <router-link class="nav-link" to="/">Home</router-link>

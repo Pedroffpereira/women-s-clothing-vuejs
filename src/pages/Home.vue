@@ -14,7 +14,7 @@ export default {
 <template>
     <Header />
     <div class="container py-5 my-5">
-        <h2 class="text-center">Destaque</h2>
+        <h2 class="text-center">highlight</h2>
         <itemList />
     </div>
 </template>
