@@ -9,11 +9,17 @@ import { useCartStore } from '../store/cart.js'
 export default {
 
     computed: {
+        isInCart: function () {
+            return this.items.find(
+                (item) => item.id == this.$route.params.id
+            ) != null
+        },
         product: function () {
             return this.products.find(
                 (product) => product.id == this.$route.params.id
             )
         },
+        ...mapState(useCartStore, ['items']),
         ...mapState(useProductsList, ['products']),
     },
     data() {
@@ -65,10 +71,14 @@ export default {
                 <span v-if="product.quantity >= 3">
                     Em stock
                 </span>
-                <div class="d-flex" v-if="product.quantity > 0">
+                <div class="d-flex" v-if="product.quantity > 0 && !isInCart">
                     <selectQuantaty :maxQuantity="product.quantity" @setQuantaty="setQuantaty" />
                     <itemButton @addToCart="addToCart" :product="product" :quantity="quantity"
                         @customClick="() => { add = true }" />
+                </div>
+                <div class="error" v-else>
+                    Item is already in cart
+
                 </div>
             </div>
         </div>
@@ -94,5 +104,8 @@ img {
 
 .price {
     font-size: 1.875rem;
+}
+.error {
+    color: red;
 }
 </style>
