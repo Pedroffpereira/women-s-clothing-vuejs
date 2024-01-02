@@ -18,7 +18,7 @@ export const useCartStore = defineStore('cart', () => {
   
   //#region Cart operations
   function addCart(cart) {
-    if(Array.isArray(cart)) items.value = cart; 
+    if (Array.isArray(cart)) items.value = cart; 
   }
 
   function incrementQuantity(id) {
@@ -51,13 +51,18 @@ export const useCartStore = defineStore('cart', () => {
 
   function addToCart(item, quantity = 1) {
     if (!item || item.quantity === 0) return;
-    if (!itemAlreadyInCart(item)) {
-      if (!quantity || quantity < 1) quantity = 1;
-      if (quantity > item.quantity) quantity = item.quantity;
+    if (!quantity || quantity < 1) quantity = 1;
+    if (quantity > item.quantity) quantity = item.quantity;
+
+    const cartItem = items.value.find(i => i.id === item.id);
+    if (!cartItem) {
       item.cartQuantity = quantity;
       items.value.push(item);
-      setInLocalStorage('cart', items.value);
     }
+    else {
+      cartItem.cartQuantity = quantity;
+    }
+    setInLocalStorage('cart', items.value);
   }
 
   function removeFromCart(id) {
@@ -70,14 +75,6 @@ export const useCartStore = defineStore('cart', () => {
       else {
         removeFromLocalStorage('cart');
       }
-    }
-  }
-
-  function itemAlreadyInCart(item) {
-    try {
-      return items.value.some(cartItem => cartItem.id === item.id);
-    } catch (error) {
-      console.error("Error:", error);
     }
   }
   //#endregion
@@ -123,6 +120,7 @@ export const useCartStore = defineStore('cart', () => {
         error: "An error occurred while processing your purchase." 
       };
     } finally {
+      if (couponStore.hasDiscount) couponStore.$reset();
       router.push('/Purchase');
     }
   }
