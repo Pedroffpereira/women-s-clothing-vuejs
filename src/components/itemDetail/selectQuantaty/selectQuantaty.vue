@@ -26,7 +26,7 @@ export default {
     },
     data() {
         return {
-            quantity: 0
+            quantity: 1
         }
     },
     components: {
