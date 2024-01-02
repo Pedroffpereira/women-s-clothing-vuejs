@@ -49,6 +49,6 @@ export async function saveProductsOnCache() {
             "Products": products
         }
     } catch (e) {
-        alert(e)
+        alert("The website is currently unavailable!!!!")
     }
 }
