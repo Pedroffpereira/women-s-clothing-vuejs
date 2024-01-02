@@ -61,24 +61,23 @@ export default {
                     {{ product.price }}€
                 </p>
                 <p v-if="product.quantity == 0">
-                    Esgotado
+                    Sold off
                 </p>
 
                 <p v-if="product.quantity < 3 && product.quantity > 0">
-                    Poucas Unidades
+                    Few Units
                 </p>
 
                 <span v-if="product.quantity >= 3">
-                    Em stock
+                    In stock
                 </span>
-                <div class="d-flex" v-if="product.quantity > 0 && !isInCart">
+                <div class="d-flex mt-4" v-if="product.quantity > 0 && !isInCart">
                     <selectQuantaty :maxQuantity="product.quantity" @setQuantaty="setQuantaty" />
                     <itemButton @addToCart="addToCart" :product="product" :quantity="quantity"
                         @customClick="() => { add = true }" />
                 </div>
-                <div class="error" v-else>
+                <div class="error" v-if="isInCart">
                     Item is already in cart
-
                 </div>
             </div>
         </div>
@@ -105,6 +104,7 @@ img {
 .price {
     font-size: 1.875rem;
 }
+
 .error {
     color: red;
 }
