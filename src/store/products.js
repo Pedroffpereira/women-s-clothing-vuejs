@@ -24,7 +24,7 @@ export const useProductsList = defineStore("ProductList", {
         searchProductList(searchString = '') {
             if (searchString != '') {
                 return this.products.filter(
-                    (product) => product.name.includes(searchString)
+                    (product) => product.name.toUpperCase().includes(searchString)
                 )
             }
             return this.products;

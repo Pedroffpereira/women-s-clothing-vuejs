@@ -9,7 +9,7 @@ export default {
     },
     methods: {
         inputSearch: function (inputString) {
-            this.searchName = inputString;
+            this.searchName = inputString.toUpperCase();
         }
     },
     components: {
